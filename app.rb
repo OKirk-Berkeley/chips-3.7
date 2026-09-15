@@ -45,7 +45,7 @@ class WordGuesserApp < Sinatra::Base
     begin
     result = @game.guess(letter)
     rescue
-      flash[:message] = "Invalid guess"
+      flash[:message] = "Invalid guess."
     end
     if result == false
       flash[:message] = "You have already used that letter."
@@ -71,11 +71,19 @@ class WordGuesserApp < Sinatra::Base
 
   get '/win' do
     ### YOUR CODE HERE ###
+    result = @game.check_win_or_lose
+    if result == :lose or result == :play
+      redirect '/show'
+    end
     erb :win # You may change/remove this line
   end
 
   get '/lose' do
     ### YOUR CODE HERE ###
+    result = @game.check_win_or_lose
+    if result == :win or result == :play
+      redirect '/show'
+    end
     erb :lose # You may change/remove this line
   end
 end
