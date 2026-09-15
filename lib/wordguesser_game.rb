@@ -27,6 +27,7 @@ class WordGuesserGame
     if not letter_in_word
       @wrong_guesses << letter
     end
+    true
   end
 
   def word_with_guesses
