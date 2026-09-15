@@ -47,7 +47,7 @@ class WordGuesserApp < Sinatra::Base
     rescue
       flash[:message] = "Invalid guess"
     end
-    if not result
+    if result == false
       flash[:message] = "You have already used that letter."
     end
     redirect '/show'
@@ -66,7 +66,6 @@ class WordGuesserApp < Sinatra::Base
     elsif result == :lose
       erb :lose
     end
-    puts(@game.word_with_guesses)
     erb :show # You may change/remove this line
   end
 
